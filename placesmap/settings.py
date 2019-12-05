@@ -21,7 +21,7 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -46,15 +46,17 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'placesmap.middlewares.PlacesmapSpiderMiddleware': 543,
-#}
+# SPIDER_MIDDLEWARES = {
+#     'placesmap.middlewares.PlacesmapSpiderMiddleware': 543,
+
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'placesmap.middlewares.PlacesmapDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    #'placesmap.middlewares.PlacesmapDownloaderMiddleware': 543,
+    'placesmap.middlewares.HttpProxyMiddleware': 543
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -64,9 +66,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'placesmap.pipelines.PlacesmapPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'placesmap.pipelines.PlacesmapPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +90,5 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+EXPORT_DIR = "./"
+SHEET_COLUMNS = ["地区", "名称", "地址", "纬度", "经度", "电话", "网址"]

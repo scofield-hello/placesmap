@@ -8,6 +8,34 @@
 from scrapy import signals
 
 
+class HttpProxyMiddleware(object):
+    @classmethod
+    def from_crawler(cls, crawler):
+        s = cls()
+        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        return s
+
+    def process_response(self, request, response, spider):
+        return response
+
+    def process_exception(self, request, exception, spider):
+        # Called when a download handler or a process_request()
+        # (from other downloader middleware) raises an exception.
+
+        # Must either:
+        # - return None: continue processing this exception
+        # - return a Response object: stops process_exception() chain
+        # - return a Request object: stops process_exception() chain
+        pass
+
+    def spider_opened(self, spider):
+        spider.logger.info('Spider opened: %s' % spider.name)
+
+    def process_request(self, request, spider):
+        request.meta["proxy"] = "http://117.88.176.44"
+        return None
+
+
 class PlacesmapSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the

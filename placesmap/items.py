@@ -11,11 +11,10 @@ import scrapy
 class PlacesmapItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    country = scrapy.Field()
-    area = scrapy.Field()
-    name = scrapy.Field()
-    address = scrapy.Field()
-    latitude = scrapy.Field()
-    longitude = scrapy.Field()
-    telphone = scrapy.Field()
-    website = scrapy.Field()
+    F1 = scrapy.Field()
+    F2 = scrapy.Field()
+    F3 = scrapy.Field()
+    F4 = scrapy.Field()
+    F5 = scrapy.Field()
+    F6 = scrapy.Field()
+    F7 = scrapy.Field()
